@@ -1,5 +1,5 @@
-# For jgrn/tauboa:
-pathtopackage <- "C:\\Users\\jgreenberg\\git\\espa_tools\\espa.tools"
+
+pathtopackage <- "C:\\Users\\jgreenberg\\workspace\\espa-tools\\pkg\\espa.tools"
 
 # For jgrn/krypton:
 pathtopackage <- "/Users/jgrn307/Documents/workspace/gdalutils/pkg/gdalUtils"
