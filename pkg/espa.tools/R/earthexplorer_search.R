@@ -35,8 +35,8 @@
 #' earthexplorer_search(
 #'		usgs_eros_username="myusername",usgs_eros_password="mypassword",
 #'		datasetName="GLS2005",
-#' 		"lowerLeft"=list(latitude=75,longitude=-135),
-#' 		"upperRight"=list(latitude=90,longitude=-120),
+#' 		lowerLeft=list(latitude=75,longitude=-135),
+#' 		upperRight=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
 #'		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 #'		place_order = F,
@@ -46,8 +46,8 @@
 #' earthexplorer_search(
 #'		usgs_eros_username="myusername",usgs_eros_password="mypassword",
 #'		datasetName="GLS2005",
-#' 		"lowerLeft"=list(latitude=75,longitude=-135),
-#' 		"upperRight"=list(latitude=90,longitude=-120),
+#' 		lowerLeft=list(latitude=75,longitude=-135),
+#' 		upperRight=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
 #'		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 #'		place_order = T,
@@ -55,7 +55,7 @@
 #' 		format="gtiff",
 #'		verbose=T)
 #' }
-#' @import rgdal foreach rgeos
+#' @import rgdal foreach rgeos xml2
 #' @export 
 
 earthexplorer_search <- function(
@@ -95,6 +95,7 @@ earthexplorer_search <- function(
 		additional_datasets <- unlist(special_datasetName[special_datasetName_index])
 	} else
 	{
+		special_datasetName_index=NULL
 		additional_datasets=NULL
 	}
 	
