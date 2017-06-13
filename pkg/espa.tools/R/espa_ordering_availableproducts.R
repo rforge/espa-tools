@@ -24,12 +24,14 @@
 espa_ordering_availableproducts <- function(inputs=NULL,usgs_eros_username,usgs_eros_password,verbose=F)
 {
 	
+	current_version <- tail(names(espa_ordering_apiversions(usgs_eros_username,usgs_eros_password)),n=1)
+	
 	if(is.character(inputs))
 	{
 		inputs <- list(inputs=inputs)
 	}
 	
-	return(espa_ordering_post_api(request_code="api/v0/available-products",json_request_content=inputs,
+	return(espa_ordering_post_api(request_code=paste("api/",current_version,"/available-products",sep=""),json_request_content=inputs,
 			usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 			verbose=verbose))
 	

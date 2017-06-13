@@ -20,7 +20,10 @@
 
 espa_ordering_orderingschema <- function(usgs_eros_username,usgs_eros_password,verbose=F)
 {
-	return(espa_ordering_get_api(request_code="api/v0/order-schema",json_request_content=NULL,
+	
+	current_version <- tail(names(espa_ordering_apiversions(usgs_eros_username,usgs_eros_password)),n=1)
+	
+	return(espa_ordering_get_api(request_code=paste("api/",current_version,"/order-schema",sep=""),json_request_content=NULL,
 			usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 			verbose=verbose))
 	

@@ -19,7 +19,10 @@
 
 espa_ordering_userinformation <- function(usgs_eros_username,usgs_eros_password,verbose=F)
 {
-	return(espa_ordering_get_api(request_code="api/v0/user",json_request_content=NULL,
+	
+	current_version <- tail(names(espa_ordering_apiversions(usgs_eros_username,usgs_eros_password)),n=1)
+	
+	return(espa_ordering_get_api(request_code=paste("api/",current_version,"/user",sep=""),json_request_content=NULL,
 			usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 			verbose=verbose))
 	

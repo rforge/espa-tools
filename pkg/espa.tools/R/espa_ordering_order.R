@@ -29,10 +29,12 @@
 espa_ordering_order <- function(ordernum=NULL,orderrequest=NULL,usgs_eros_username,usgs_eros_password,verbose=F)
 {
 	
+	current_version <- tail(names(espa_ordering_apiversions(usgs_eros_username,usgs_eros_password)),n=1)
+		
 	if(!is.null(ordernum))
 	{
 		json_request_content=ordernum
-		return(espa_ordering_get_api(request_code="api/v0/order",json_request_content=json_request_content,
+		return(espa_ordering_get_api(request_code=paste("api/",current_version,"/order",sep=""),json_request_content=json_request_content,
 						usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 						verbose=verbose))
 		
@@ -42,7 +44,7 @@ espa_ordering_order <- function(ordernum=NULL,orderrequest=NULL,usgs_eros_userna
 		if(!is.null(orderrequest))
 		{
 			json_request_content=orderrequest
-			return(espa_ordering_post_api(request_code="api/v0/order",json_request_content=orderrequest,
+			return(espa_ordering_post_api(request_code=paste("api/",current_version,"/order",sep=""),json_request_content=orderrequest,
 							usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 							verbose=verbose,auto_unbox=F))			
 		} else

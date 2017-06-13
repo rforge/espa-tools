@@ -27,6 +27,8 @@ espa_ordering_listorders <- function(email=NULL,usgs_eros_username,usgs_eros_pas
 		ordernums_only=F,verbose=F)
 {
 	
+	current_version <- tail(names(espa_ordering_apiversions(usgs_eros_username,usgs_eros_password)),n=1)
+		
 	if(is.null(email))
 	{
 		json_request_content=NULL
@@ -37,7 +39,7 @@ espa_ordering_listorders <- function(email=NULL,usgs_eros_username,usgs_eros_pas
 	
 	
 	espa_ordering_listorders_results <- 
-			espa_ordering_get_api(request_code="api/v0/list-orders",json_request_content=json_request_content,
+			espa_ordering_get_api(request_code=paste("api/",current_version,"/list-orders",sep=""),json_request_content=json_request_content,
 					usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 					verbose=verbose)
 	

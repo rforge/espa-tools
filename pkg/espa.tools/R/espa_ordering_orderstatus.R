@@ -20,6 +20,8 @@
 espa_ordering_orderstatus <- function(ordernum=NULL,usgs_eros_username,usgs_eros_password,verbose=F)
 {
 	
+	current_version <- tail(names(espa_ordering_apiversions(usgs_eros_username,usgs_eros_password)),n=1)
+		
 	if(is.null(ordernum))
 	{
 		stop("Must have an ordernum set.")
@@ -29,7 +31,7 @@ espa_ordering_orderstatus <- function(ordernum=NULL,usgs_eros_username,usgs_eros
 	}
 	
 	
-	return(espa_ordering_get_api(request_code="api/v0/order-status",json_request_content=json_request_content,
+	return(espa_ordering_get_api(request_code=paste("api/",current_version,"/order-status",sep=""),json_request_content=json_request_content,
 			usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 			verbose=verbose))
 	
