@@ -16,7 +16,7 @@
 #' @references \url{https://github.com/USGS-EROS/espa-api#apiProdsGet}
 #' @examples
 #' \dontrun{ 
-#' inputs <- c("LE70290302003123EDC00","MOD09A1.A2000073.h12v11.005.2008238080250.hdf","bad_scene_id")
+#' inputs <- "LC08_L1TP_029030_20161008_20170220_01_T1"
 #' espa_ordering_availableproducts(inputs=inputs,usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
 #' @export
@@ -31,8 +31,18 @@ espa_ordering_availableproducts <- function(inputs=NULL,usgs_eros_username,usgs_
 		inputs <- list(inputs=inputs)
 	}
 	
-	return(espa_ordering_post_api(request_code=paste("api/",current_version,"/available-products",sep=""),json_request_content=inputs,
-			usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
-			verbose=verbose))
+#	browser()
 	
+#	if(is.null(inputs))
+#	{
+#		return(espa_ordering_get_api(request_code=paste("api/",current_version,"/available-products",sep=""),json_request_content=NULL,
+#						usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
+#						verbose=verbose))
+#	} else
+#	{
+		
+		return(espa_ordering_get_api(request_code=paste("api/",current_version,"/available-products",sep=""),json_request_content=inputs,
+						usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
+						verbose=verbose))
+#	}
 }
