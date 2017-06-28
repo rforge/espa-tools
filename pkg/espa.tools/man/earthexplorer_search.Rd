@@ -65,8 +65,8 @@ time series of surface reflectance products.  Set products="sr" in that case.
 earthexplorer_search(
 	usgs_eros_username="myusername",usgs_eros_password="mypassword",
 	datasetName="GLS2005",
-		lowerLeft=list(latitude=75,longitude=-135),
-		upperRight=list(latitude=90,longitude=-120),
+		"lowerLeft"=list(latitude=75,longitude=-135),
+		"upperRight"=list(latitude=90,longitude=-120),
 		startDate="2006-01-01",endDate="2007-12-01",
 	includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 	place_order = F,
@@ -76,8 +76,8 @@ earthexplorer_search(
 earthexplorer_search(
 	usgs_eros_username="myusername",usgs_eros_password="mypassword",
 	datasetName="GLS2005",
-		lowerLeft=list(latitude=75,longitude=-135),
-		upperRight=list(latitude=90,longitude=-120),
+		"lowerLeft"=list(latitude=75,longitude=-135),
+		"upperRight"=list(latitude=90,longitude=-120),
 		startDate="2006-01-01",endDate="2007-12-01",
 	includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 	place_order = T,

@@ -35,8 +35,8 @@
 #' earthexplorer_search(
 #'		usgs_eros_username="myusername",usgs_eros_password="mypassword",
 #'		datasetName="GLS2005",
-#' 		lowerLeft=list(latitude=75,longitude=-135),
-#' 		upperRight=list(latitude=90,longitude=-120),
+#' 		"lowerLeft"=list(latitude=75,longitude=-135),
+#' 		"upperRight"=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
 #'		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 #'		place_order = F,
@@ -46,8 +46,8 @@
 #' earthexplorer_search(
 #'		usgs_eros_username="myusername",usgs_eros_password="mypassword",
 #'		datasetName="GLS2005",
-#' 		lowerLeft=list(latitude=75,longitude=-135),
-#' 		upperRight=list(latitude=90,longitude=-120),
+#' 		"lowerLeft"=list(latitude=75,longitude=-135),
+#' 		"upperRight"=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
 #'		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 #'		place_order = T,
@@ -55,7 +55,7 @@
 #' 		format="gtiff",
 #'		verbose=T)
 #' }
-#' @import rgdal foreach rgeos xml2
+#' @import rgdal foreach rgeos
 #' @export 
 
 earthexplorer_search <- function(
@@ -72,8 +72,13 @@ earthexplorer_search <- function(
 		verbose=F)
 {
 	# Parameters:
+#	special_datasetName=list(
+#			LANDSAT_4578=c("LANDSAT_TM","LANDSAT_ETM","LANDSAT_8" )#,
+#	#	LANDSAT_4578_SR=c("LSR_LANDSAT_TM","LSR_LANDSAT_ETM_COMBINED","LSR_LANDSAT_8")
+#	)
+	
 	special_datasetName=list(
-			LANDSAT_4578=c("LANDSAT_TM","LANDSAT_ETM","LANDSAT_8" )#,
+			LANDSAT_4578=c("LANDSAT_TM_C1","LANDSAT_ETM_C1","LANDSAT_8_C1" )#,
 	#	LANDSAT_4578_SR=c("LSR_LANDSAT_TM","LSR_LANDSAT_ETM_COMBINED","LSR_LANDSAT_8")
 	)
 	
@@ -95,7 +100,6 @@ earthexplorer_search <- function(
 		additional_datasets <- unlist(special_datasetName[special_datasetName_index])
 	} else
 	{
-		special_datasetName_index=NULL
 		additional_datasets=NULL
 	}
 	
@@ -177,7 +181,8 @@ earthexplorer_search <- function(
 			if(verbose) message("Checking for product availability...")
 			entities_all <- unlist(entities,recursive=T)
 			entities_availability <- lapply(entities_all,
-					function(x,usgs_eros_username,usgs_eros_password) espa_ordering_availableproducts(x,usgs_eros_username,usgs_eros_password),
+					function(x,usgs_eros_username,usgs_eros_password) espa_ordering_availableproducts(x,
+								usgs_eros_username,usgs_eros_password),
 					usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password)
 			
 			order_df <- foreach(i=seq(length(entities_availability)),.combine="rbind") %do%

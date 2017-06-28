@@ -26,7 +26,11 @@ espa_inventory_get_api <- function(request_code,json_request_content,auto_unbox=
 {
 	# https://earthexplorer.usgs.gov/inventory/documentation/json-api#login
 	# <http_service_endpoint>/json/<request_code>?jsonRequest=<json_request_content>
-	http_service_endpoint <- "https://earthexplorer.usgs.gov/inventory/json/"
+	# https://earthexplorer.usgs.gov/json/v/1.4.0/<request_code>?jsonRequest=<json_request_content>
+	
+	current_version = "1.4.0"
+	
+	http_service_endpoint <- paste("https://earthexplorer.usgs.gov/inventory/json/v/",current_version,"/",sep="")
 	
 	# https://earthexplorer.usgs.gov/inventory/json/login?jsonRequest={"username":"XX","password":"XX"}
 	
