@@ -36,11 +36,10 @@ espa_ordering_listorders(usgs_eros_username="myusername",usgs_eros_password="myp
 espa_ordering_listorders(email="my@email.com",usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\references{
+\url{https://github.com/USGS-EROS/espa-api#apiOrdersEmail}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\references{
-\url{https://github.com/USGS-EROS/espa-api#apiOrdersEmail}
-}
-

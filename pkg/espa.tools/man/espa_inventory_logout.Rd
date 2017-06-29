@@ -27,14 +27,13 @@ apiKey=espa_inventory_login("myusername","mypassword")
 espa_inventory_logout(apiKey=apiKey)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api#login}
 }
 \seealso{
 \code{\link{espa_inventory_logout}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

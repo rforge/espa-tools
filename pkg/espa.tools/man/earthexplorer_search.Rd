@@ -86,14 +86,13 @@ earthexplorer_search(
 	verbose=T)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov}
 }
 \seealso{
 \code{\link{espa_inventory_search},\link{espa_ordering_order}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

@@ -28,11 +28,10 @@ Lists all available api operations.
 espa_ordering_apioperations(usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\references{
+\url{https://github.com/USGS-EROS/espa-api#apiOps}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\references{
-\url{https://github.com/USGS-EROS/espa-api#apiOps}
-}
-

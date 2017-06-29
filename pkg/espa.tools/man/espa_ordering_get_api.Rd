@@ -34,11 +34,10 @@ In general, you shouldn't need to call this directly unless you want finer comma
 espa_ordering_get_api(request_code="api",json_request_content=NULL,usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\seealso{
+\code{\link{espa_ordering_post_api}}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\seealso{
-\code{\link{espa_ordering_post_api}}
-}
-

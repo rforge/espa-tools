@@ -19,10 +19,8 @@
 #' To use the additional criteria field, pass one of the four search filter objects (SearchFilterAnd, SearchFilterBetween, SearchFilterOr, SearchFilterValue) in JSON format with additionalCriteria being the root element of the object.
 #' 
 #' @param datasetName Character. Used as a filter with wildcards inserted at the beginning and the end of the supplied value.  See https://mapbox.github.io/usgs/reference/catalog/hdds.html for a list of valid datasetNames.
-#' @param lowerLeft List. When used in conjunction with upperRight, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)
-#' @param upperRight List. When used in conjunction with lowerLeft, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)
-#' @param startDate Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored. Default is "1920-01-01".
-#' @param endDate Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.Default is today's date.
+#' @param spatialFilter List. Used to apply a spatial filter on the data.
+#' @param temporalFilter List. Used to apply a temporal filter on the data.
 #' @param months Numeric. Used to limit results to specific months.
 #' @param includeUnknownCloudCover Logical. Used to determine if scenes with unknown cloud cover values should be included in the results. Default is TRUE.
 #' @param minCloudCover Numeric. Used to limit results by minimum cloud cover (for supported datasets). Range 0 to 100. Default is 0.
@@ -31,8 +29,11 @@
 #' @param maxResults Numeric. Used to determine the number of results to return	Use with startingNumber for controlled pagination. Maximum list size - 50,000
 #' @param startingNumber Numeric. Used to determine the result number to start returning from	Use with maxResults for controlled pagination.
 #' @param sortOrder Character. Used to order results based on acquisition date. Default="ASC".
+#' @param lowerLeft List. When used in conjunction with upperRight, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)
+#' @param upperRight List. When used in conjunction with lowerLeft, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)
+#' @param startDate Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored. Default is "1920-01-01".
+#' @param endDate Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.Default is today's date.
 #' @param apiKey Character. Users API Key/Authentication Token, obtained from espa_inventory_login request.
-#' @param node Character. Determines the dataset catalog to use. Default="EE", probably never needs to be changed.
 #' @param verbose Logical. Verbose execution?  Default=F.
 #' @return Number of hits found given the search.
 #' @details Additional Criteria Usage:
@@ -52,11 +53,10 @@
 #' apiKey=espa_inventory_login("myusername","mypassword")
 #' 
 #' # Standard search:
-#' espa_inventory_search(datasetName="GLS2005",
+#' espa_inventory_search(datasetName="LANDSAT_8",
 #' 		"lowerLeft"=list(latitude=75,longitude=-135),
 #' 		"upperRight"=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
-#' 		node="EE",
 #' 		maxResults=3,startingNumber=1,sortOrder="ASC",
 #' 		apiKey=apiKey)
 #' 
@@ -74,19 +74,37 @@
 #' }
 #' @export 
 
-espa_inventory_search <- function(datasetName,lowerLeft="",upperRight="",
-		startDate="1920-01-07",endDate=Sys.Date(),months="",
+espa_inventory_search <- function(datasetName,
+		spatialFilter="",
+		temporalFilter="",
+		months="",
 		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 		additionalCriteria="",
 		maxResults=50000,startingNumber=1,sortOrder="ASC",
-		apiKey,node="EE",verbose=F)
+		apiKey,
+		lowerLeft="",upperRight="",
+		startDate="1920-01-07",endDate=Sys.Date(),
+		verbose=F)
 {
-	search_parameters <- list(datasetName=datasetName,lowerLeft=lowerLeft,upperRight=upperRight,
-			startDate=startDate,endDate=endDate,months=months,
+	# Updated for 1.4.0.
+	if(spatialFilter=="" && (lowerLeft != "" && upperRight != ""))
+	{
+		spatialFilter <- espa_inventory_spatialFilter(lowerLeft=lowerLeft,upperRight=upperRight,filterType="mbr")
+	}
+	
+	if(temporalFilter=="" && (startDate != "" && endDate != ""))
+	{
+		temporalFilter <- espa_inventory_temporalFilter(startDate=startDate,endDate=endDate,dateField="search_date")
+	}
+	
+	
+	
+	search_parameters <- list(datasetName=datasetName,spatialFilter=spatialFilter,
+			temporalFilter=temporalFilter,months=months,
 			includeUnknownCloudCover=includeUnknownCloudCover,minCloudCover=minCloudCover,maxCloudCover=maxCloudCover,
 			additionalCriteria=additionalCriteria,
 			maxResults=maxResults,startingNumber=startingNumber,sortOrder=sortOrder,
-			apiKey=apiKey,node=node)
+			apiKey=apiKey)
 	
 	search <- espa_inventory_get_api(request_code="search",json_request_content=search_parameters,verbose=verbose)
 	

@@ -28,11 +28,10 @@ Returns user information for the authenticated user.
 espa_ordering_userinformation(usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\references{
+\url{https://github.com/USGS-EROS/espa-api#apiUser}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\references{
-\url{https://github.com/USGS-EROS/espa-api#apiUser}
-}
-

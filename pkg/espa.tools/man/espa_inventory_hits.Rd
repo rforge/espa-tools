@@ -61,14 +61,13 @@ espa_inventory_hits(datasetName="GLS2005",
 		apiKey=apiKey)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api#hits}
 }
 \seealso{
 \code{\link{espa_inventory_login},\link{espa_inventory_get_api}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

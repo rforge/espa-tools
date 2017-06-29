@@ -30,11 +30,10 @@ Retrieves a submitted orders status
 espa_ordering_orderstatus(ordernum="my@email.com-01122017-154454-218",usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\references{
+\url{https://github.com/USGS-EROS/espa-api#apiStatus}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\references{
-\url{https://github.com/USGS-EROS/espa-api#apiStatus}
-}
-

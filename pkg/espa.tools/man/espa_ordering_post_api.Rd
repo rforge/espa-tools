@@ -39,11 +39,10 @@ espa_ordering_post_api(request_code="api/v0/available-products",json_request_con
   usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\seealso{
+\code{\link{espa_ordering_get_api}}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\seealso{
-\code{\link{espa_ordering_get_api}}
-}
-

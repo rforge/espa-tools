@@ -32,10 +32,9 @@ search_results <- espa_inventory_search(datasetName="GLS2005",
 plot(search_to_spatialPolygons(espa_inventory_search_results=search_results))
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net})
-}
 \seealso{
 \code{\link{espa_inventory_search}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net})
+}

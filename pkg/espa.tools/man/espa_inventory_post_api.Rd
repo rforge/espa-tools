@@ -30,14 +30,13 @@ In general, you shouldn't need to call this directly unless you want finer comma
 	espa_inventory_post_api(request_code="login",json_request_content=login_parameters,verbose=verbose)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api}
 }
 \seealso{
 \code{\link{espa_inventory_login},\link{espa_inventory_get_api}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

@@ -16,7 +16,6 @@
 #' @param startDate Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.
 #' @param endDate Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.
 #' @param apiKey Character. Users API Key/Authentication Token, obtained from espa_inventory_login request.
-#' @param node Character. Determines the dataset catalog to use. Default="EE", probably never needs to be changed.
 #' @param verbose Logical. Verbose execution?  Default=F.
 #' @return List of metadata filter fields for datasets available for searching.
 #' @author Jonathan A. Greenberg (\email{espa-tools@@estarcion.net}) (wrapper) 
@@ -35,20 +34,36 @@
 #' }
 #' @export 
 
-espa_inventory_datasets <- function(datasetName=NULL,lowerLeft=NULL,upperRight=NULL,
-		startDate="1920-01-07",endDate=Sys.Date(),apiKey,node="EE",verbose=F)
+espa_inventory_datasets <- function(datasetName=NULL,
+		spatialFilter=NULL,
+		temporalFilter=NULL,
+		lowerLeft=NULL,upperRight=NULL,
+		startDate="1920-01-07",endDate=Sys.Date(),apiKey,verbose=F)
 {
+	if(is.null(spatialFilter) && (!is.null(lowerLeft) && !is.null(upperRight)))
+	{
+		spatialFilter <- espa_inventory_spatialFilter(lowerLeft=lowerLeft,upperRight=upperRight,filterType="mbr")
+	}
+	
+	if(is.null(temporalFilter) && (!is.null(startDate) && !is.null(endDate)))
+	{
+		temporalFilter <- espa_inventory_temporalFilter(startDate=startDate,endDate=endDate,dateField="search_date")
+	}
+	
+	
 	# We need to build this list up rather than pre-create it:
 	datasets_parameters <- vector(mode="list")
 	
 	if(!is.null(datasetName)) datasets_parameters$datasetName=datasetName
-	if(!is.null(lowerLeft)) datasets_parameters$lowerLeft=lowerLeft
-	if(!is.null(upperRight)) datasets_parameters$upperRight=upperRight
-	if(!is.null(startDate)) datasets_parameters$startDate=startDate
-	if(!is.null(endDate)) datasets_parameters$endDate=endDate
+	if(!is.null(spatialFilter)) datasets_parameters$spatialFilter=spatialFilter
+	if(!is.null(temporalFilter)) datasets_parameters$temporalFilter=temporalFilter
+	
+#	if(!is.null(lowerLeft)) datasets_parameters$lowerLeft=lowerLeft
+#	if(!is.null(upperRight)) datasets_parameters$upperRight=upperRight
+#	if(!is.null(startDate)) datasets_parameters$startDate=startDate
+#	if(!is.null(endDate)) datasets_parameters$endDate=endDate
 	
 	datasets_parameters$apiKey=apiKey
-	datasets_parameters$node=node
 	
 #	
 #	datasets_parameters <- list(datasetName=datasetName,lowerLeft=lowerLeft,upperRight=upperRight,

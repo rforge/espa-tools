@@ -35,21 +35,25 @@ search_to_spatialPolygons <- function(espa_inventory_search_results)
 		
 		search_to_spatialPolygons_list <- foreach(i=seq(espa_inventory_search_results$data$numberReturned)) %do%
 				{
+					# Updated for 1.4.0
+					sceneBounds <- as.numeric(unlist(strsplit(espa_inventory_search_results$data$results[[i]]$sceneBounds,split=",")))
+					
 					# http://gis.stackexchange.com/questions/206929/r-create-a-boundingbox-convert-to-polygon-class-and-plot
 					coords <- matrix(c(
-									rev(unlist(espa_inventory_search_results$data$results[[i]]$upperLeftCoordinate)),
-									rev(unlist(espa_inventory_search_results$data$results[[i]]$upperRightCoordinate)),
-									rev(unlist(espa_inventory_search_results$data$results[[i]]$lowerRightCoordinate)),
-									rev(unlist(espa_inventory_search_results$data$results[[i]]$lowerLeftCoordinate))),ncol=2,byrow=TRUE)
+									c(sceneBounds[1],sceneBounds[4]),
+									c(sceneBounds[1],sceneBounds[2]),
+									c(sceneBounds[3],sceneBounds[2]),
+									c(sceneBounds[3],sceneBounds[4])
+							),ncol=2,byrow=TRUE)
 					P1 <- Polygon(coords)
 					Ps1 <- Polygons(list(P1),ID=i) 
 					return(Ps1)
 				}
 		search_to_spatialPolygons_entities <- as.data.frame(foreach(i=seq(espa_inventory_search_results$data$numberReturned),.combine=rbind) %do%
-				{
-					# http://gis.stackexchange.com/questions/206929/r-create-a-boundingbox-convert-to-polygon-class-and-plot
-					return(espa_inventory_search_results$data$results[[i]]$entityId)
-				})
+						{
+							# http://gis.stackexchange.com/questions/206929/r-create-a-boundingbox-convert-to-polygon-class-and-plot
+							return(espa_inventory_search_results$data$results[[i]]$entityId)
+						})
 		
 		
 		search_to_spatialPolygons_sp = SpatialPolygons(search_to_spatialPolygons_list, proj4string=CRS("+proj=longlat +datum=WGS84 +ellps=WGS84 +towgs84=0,0,0 "))

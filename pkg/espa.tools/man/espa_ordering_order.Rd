@@ -36,14 +36,13 @@ orderrequest=list(
 myorder <- espa_ordering_order(orderrequest=orderrequest,usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://github.com/USGS-EROS/espa-api#apiSubmitOrder}
 }
 \seealso{
 \code{\link{earthexplorer_search}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

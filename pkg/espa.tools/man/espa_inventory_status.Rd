@@ -23,14 +23,13 @@ This method is used to get the status of the API.
 espa_inventory_status()
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api#status}
 }
 \seealso{
 \code{\link{espa_inventory_get_api}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

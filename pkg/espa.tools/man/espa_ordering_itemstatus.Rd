@@ -36,11 +36,10 @@ espa_ordering_itemstatus(ordernum="my@email.com-01122017-154454-218",usgs_eros_u
 espa_ordering_itemstatus(ordernum="my@email.com-01122017-154454-218",itemnum="LC80410312015219LGN00",usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
+\references{
+\url{https://github.com/USGS-EROS/espa-api#apiProdStats}
+}
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\references{
-\url{https://github.com/USGS-EROS/espa-api#apiProdStats}
-}
-

@@ -32,14 +32,13 @@ apiKey=espa_inventory_login("myusername","mypassword")
 espa_inventory_datasetfields(datasetName="LANDSAT_8",apiKey=apiKey)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api#datasetfields}
 }
 \seealso{
 \code{\link{espa_inventory_login},\link{espa_inventory_get_api}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

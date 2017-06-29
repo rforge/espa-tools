@@ -4,9 +4,9 @@
 \alias{espa_inventory_datasets}
 \title{espa_inventory_datasets}
 \usage{
-espa_inventory_datasets(datasetName = NULL, lowerLeft = NULL,
-  upperRight = NULL, startDate = "1920-01-07", endDate = Sys.Date(),
-  apiKey, node = "EE", verbose = F)
+espa_inventory_datasets(datasetName = NULL, spatialFilter = NULL,
+  temporalFilter = NULL, lowerLeft = NULL, upperRight = NULL,
+  startDate = "1920-01-07", endDate = Sys.Date(), apiKey, verbose = F)
 }
 \arguments{
 \item{datasetName}{Character. Used as a filter with wildcards inserted at the beginning and the end of the supplied value.  See https://mapbox.github.io/usgs/reference/catalog/hdds.html for a list of valid datasetNames.}
@@ -20,8 +20,6 @@ espa_inventory_datasets(datasetName = NULL, lowerLeft = NULL,
 \item{endDate}{Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.}
 
 \item{apiKey}{Character. Users API Key/Authentication Token, obtained from espa_inventory_login request.}
-
-\item{node}{Character. Determines the dataset catalog to use. Default="EE", probably never needs to be changed.}
 
 \item{verbose}{Logical. Verbose execution?  Default=F.}
 }
@@ -51,14 +49,13 @@ espa_inventory_datasets(datasetName="LANDSAT_8",lowerLeft=list(latitude=44.60847
    node="EE") 
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api#datasets}
 }
 \seealso{
 \code{\link{espa_inventory_login},\link{espa_inventory_get_api}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

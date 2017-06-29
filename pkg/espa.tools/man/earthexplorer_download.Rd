@@ -47,13 +47,12 @@ earthexplorer_download(usgs_eros_username="myusername",usgs_eros_password="mypas
 	ordernum=my_latest_order)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net})
-}
 \references{
 \url{https://earthexplorer.usgs.gov}
 }
 \seealso{
 \code{\link{espa_inventory_search},\link{espa_ordering_order}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net})
+}

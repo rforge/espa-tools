@@ -2,7 +2,7 @@
 pathtopackage <- "C:\\Users\\jgreenberg\\git\\espa_tools\\espa.tools"
 
 # For jgrn/krypton:
-pathtopackage <- "/Users/jgrn307/Documents/workspace/gdalutils/pkg/gdalUtils"
+pathtopackage <- "/Users/jgrn307/Documents/workspace/espa-tools/pkg/espa.tools"
 
 setwd(pathtopackage)
 

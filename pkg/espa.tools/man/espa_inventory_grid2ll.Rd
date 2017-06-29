@@ -34,14 +34,13 @@ Parameters") as well as grid-specific parameters.
 espa_inventory_grid2ll(gridType="WRS1",responseShape="polygon",path=1,row=1)
 }
 }
-\author{
-Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
-and USGS ESPA Developers (API and documentation)
-}
 \references{
 \url{https://earthexplorer.usgs.gov/inventory/documentation/json-api#grid2ll}
 }
 \seealso{
 \code{\link{espa_inventory_get_api}}
 }
-
+\author{
+Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
+and USGS ESPA Developers (API and documentation)
+}

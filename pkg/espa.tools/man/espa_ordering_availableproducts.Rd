@@ -29,15 +29,14 @@ if the values cannot be ordered or determined.
 }
 \examples{
 \dontrun{ 
-inputs <- c("LE70290302003123EDC00","MOD09A1.A2000073.h12v11.005.2008238080250.hdf","bad_scene_id")
+inputs <- "LC08_L1TP_029030_20161008_20170220_01_T1"
 espa_ordering_availableproducts(inputs=inputs,usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
+}
+\references{
+\url{https://github.com/USGS-EROS/espa-api#apiProdsGet}
 }
 \author{
 Jonathan A. Greenberg (\email{espa-tools@estarcion.net}) (wrapper) 
 and USGS ESPA Developers (API and documentation)
 }
-\references{
-\url{https://github.com/USGS-EROS/espa-api#apiProdsGet}
-}
-
