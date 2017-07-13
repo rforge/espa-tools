@@ -4,19 +4,22 @@
 \alias{espa_inventory_search}
 \title{espa_inventory_search}
 \usage{
-espa_inventory_search(datasetName, spatialFilter = "", temporalFilter = "",
-  months = "", includeUnknownCloudCover = T, minCloudCover = 0,
-  maxCloudCover = 100, additionalCriteria = "", maxResults = 50000,
-  startingNumber = 1, sortOrder = "ASC", apiKey, lowerLeft = "",
-  upperRight = "", startDate = "1920-01-07", endDate = Sys.Date(),
-  verbose = F)
+espa_inventory_search(datasetName, lowerLeft = "", upperRight = "",
+  startDate = "1920-01-07", endDate = Sys.Date(), months = "",
+  includeUnknownCloudCover = T, minCloudCover = 0, maxCloudCover = 100,
+  additionalCriteria = "", maxResults = 50000, startingNumber = 1,
+  sortOrder = "ASC", apiKey, node = "EE", verbose = F)
 }
 \arguments{
 \item{datasetName}{Character. Used as a filter with wildcards inserted at the beginning and the end of the supplied value.  See https://mapbox.github.io/usgs/reference/catalog/hdds.html for a list of valid datasetNames.}
 
-\item{spatialFilter}{List. Used to apply a spatial filter on the data.}
+\item{lowerLeft}{List. When used in conjunction with upperRight, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)}
 
-\item{temporalFilter}{List. Used to apply a temporal filter on the data.}
+\item{upperRight}{List. When used in conjunction with lowerLeft, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)}
+
+\item{startDate}{Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored. Default is "1920-01-01".}
+
+\item{endDate}{Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.Default is today's date.}
 
 \item{months}{Numeric. Used to limit results to specific months.}
 
@@ -36,13 +39,7 @@ espa_inventory_search(datasetName, spatialFilter = "", temporalFilter = "",
 
 \item{apiKey}{Character. Users API Key/Authentication Token, obtained from espa_inventory_login request.}
 
-\item{lowerLeft}{List. When used in conjunction with upperRight, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)}
-
-\item{upperRight}{List. When used in conjunction with lowerLeft, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)}
-
-\item{startDate}{Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored. Default is "1920-01-01".}
-
-\item{endDate}{Character. Used to search datasets temporally for possible dataset coverage. ISO 8601 Formatted Date. Time portion is ignored.Default is today's date.}
+\item{node}{Character. Determines the dataset catalog to use. Default="EE", probably never needs to be changed.}
 
 \item{verbose}{Logical. Verbose execution?  Default=F.}
 }
@@ -81,10 +78,11 @@ The second example below would result in the following query logic (using Landsa
 apiKey=espa_inventory_login("myusername","mypassword")
 
 # Standard search:
-espa_inventory_search(datasetName="LANDSAT_8",
+espa_inventory_search(datasetName="GLS2005",
 		"lowerLeft"=list(latitude=75,longitude=-135),
 		"upperRight"=list(latitude=90,longitude=-120),
 		startDate="2006-01-01",endDate="2007-12-01",
+		node="EE",
 		maxResults=3,startingNumber=1,sortOrder="ASC",
 		apiKey=apiKey)
 
