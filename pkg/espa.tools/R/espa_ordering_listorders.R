@@ -21,6 +21,7 @@
 #' # Get status for a different user based on their email:
 #' espa_ordering_listorders(email="my@@email.com",usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
+#' @import xml2
 #' @export
 
 espa_ordering_listorders <- function(email=NULL,usgs_eros_username,usgs_eros_password,
@@ -43,7 +44,15 @@ espa_ordering_listorders <- function(email=NULL,usgs_eros_username,usgs_eros_pas
 					usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password,
 					verbose=verbose)
 	
-	if(ordernums_only) espa_ordering_listorders_results <- unlist(espa_ordering_listorders_results$orders)
+	if(ordernums_only) 
+	{
+		# v1 -- very messy cleaning:
+		results <- strsplit(gsub(" ","",gsub("\"","",gsub("\\]","",gsub("\\[","",(as_list(espa_ordering_listorders_results)$body$p[[1]]))))),",")[[1]]
+		espa_ordering_listorders_results <- results
+	}
+		
+		
+	#	espa_ordering_listorders_results <- unlist(espa_ordering_listorders_results$orders)
 	return(espa_ordering_listorders_results)
 	
 }

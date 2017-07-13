@@ -28,7 +28,7 @@
 #' 	output_folder=getwd()
 #' 	ordernum=my_latest_order)
 #' }
-#' @import httr foreach
+#' @import httr foreach parallel
 #' @export 
 
 earthexplorer_download <- function(
@@ -43,6 +43,8 @@ earthexplorer_download <- function(
 {
 	# To pass check:
 	i=NULL
+	
+	concurrent_downloads=1
 	
 	# Make this better:
 	setwd(output_folder)
@@ -96,15 +98,37 @@ earthexplorer_download <- function(
 		{
 			# Now download!  output folder isn't working yet...
 			order_info <- espa_ordering_itemstatus(ordernum=ordernum,usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password)
-			download_urls <- data.frame(url=sapply(order_info$orderid[[1]],function(x) return(x$product_dload_url)),stringsAsFactors=F)
+			# download_urls <- data.frame(url=sapply(order_info$orderid[[1]],function(x) return(x$product_dload_url)),stringsAsFactors=F)
+			download_urls <- data.frame(url=sapply(order_info[[1]],function(x) return(x$product_dload_url)),stringsAsFactors=F)
+			# Remove blank urls:
+			#	browser()
+			download_urls <-as.data.frame(download_urls[download_urls[,1] != "",],stringsAsFactors=F)
+			names(download_urls) <- "url"
+			#		browser()
 			download_urls$basename <- basename(download_urls$url)
 			
-			registerDoSEQ()
-			downloads <- foreach(i=seq(nrow(download_urls))) %dopar%
+			if(concurrent_downloads == 1)
+			{
+				registerDoSEQ()
+			} else
+			{
+				# Do not allow more than 4 concurrent downloads at once
+				if(concurrent_downloads > 4) concurrent_downloads = 4
+				cl <- makeCluster(spec=concurrent_downloads,type="PSOCK")
+				setDefaultCluster(cl=cl)
+				registerDoParallel(cl)
+			}
+			
+			downloads <- foreach(i=seq(nrow(download_urls)),.packages=c("httr")) %dopar%
 					{
 						GET(download_urls$url[i],write_disk(download_urls$basename[i],overwrite=overwrite),authenticate(usgs_eros_username,usgs_eros_password))
 					}
 			
+			if(concurrent_downloads > 1)
+			{
+				registerDoSEQ()
+				tryCatch(stopCluster(cl),error=function(e){})
+			}
 		}
 	}
 	
