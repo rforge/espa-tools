@@ -169,56 +169,21 @@ earthexplorer_search <- function(
 						current_search <- initial_search[[i]]
 						if(current_search$data$numberReturned > 0)
 						{
-							# Correction for Landsat C1 which uses the displayID and not the entityId:
-							if(names(initial_search)[i] %in% c("LANDSAT_TM_C1","LANDSAT_ETM_C1","LANDSAT_8_C1" ))
-							{
-								return(sapply(current_search$data$results,function(x) return(x$displayId)))
-								
-							} else
-							{
-								return(sapply(current_search$data$results,function(x) return(x$entityId)))
-								
-							}
-							
+							return(sapply(current_search$data$results,function(x) return(x$entityId)))
 						} else
 						{
 							return(NULL)
 						}
 					}
-			
 			names(entities) <- names(initial_search)
-			
-			
-#			displayIDs <- foreach(i=seq(length(initial_search))) %do%
-#					{
-#						current_search <- initial_search[[i]]
-#						if(current_search$data$numberReturned > 0)
-#						{
-#							return(sapply(current_search$data$results,function(x) return(x$displayId)))
-#						} else
-#						{
-#							return(NULL)
-#						}
-#					}
-#			
-#			names(displayIDs) <- names(initial_search)
-			
 			
 			# Check for product info for all products:
 			if(verbose) message("Checking for product availability...")
-			# Entities first:
 			entities_all <- unlist(entities,recursive=T)
 			entities_availability <- lapply(entities_all,
 					function(x,usgs_eros_username,usgs_eros_password) espa_ordering_availableproducts(x,
 								usgs_eros_username,usgs_eros_password),
 					usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password)
-			
-			# DisplayIDs next (problem for C1 searches):
-#			displayIDs_all <- unlist(displayIDs,recursive=T)
-#			displayIDs_availability <- lapply(displayIDs_all,
-#					function(x,usgs_eros_username,usgs_eros_password) espa_ordering_availableproducts(x,
-#								usgs_eros_username,usgs_eros_password),
-#					usgs_eros_username=usgs_eros_username,usgs_eros_password=usgs_eros_password)
 			
 			order_df <- foreach(i=seq(length(entities_availability)),.combine="rbind") %do%
 					{
