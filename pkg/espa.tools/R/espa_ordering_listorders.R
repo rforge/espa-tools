@@ -21,7 +21,7 @@
 #' # Get status for a different user based on their email:
 #' espa_ordering_listorders(email="my@@email.com",usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
-#' @import xml2
+##' @import xml2
 #' @export
 
 espa_ordering_listorders <- function(email=NULL,usgs_eros_username,usgs_eros_password,
