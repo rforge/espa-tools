@@ -100,4 +100,71 @@ library(sp)
 plot(search_to_spatialPolygons(search_results$LANDSAT_8_C1))
 
 ### STEP 5: LET'S REFINE OUR SEARCH AND PUT IN AN ORDER:
+library("espa.tools")
+library("foreach")
+library("jsonlite")
+
+# SOME INITIAL PARAMETERS:
+
+# We'll search Landsat 4 TM, 5 TM, 7 ETM+, and 8 OLI:
+mydatasetName="LANDSAT_4578" 
+# Note this is a special "collection" that won't appear in the available_datasetNames, 
+# it will search multiple dataSets: LANDSAT_4578=c("LANDSAT_TM_C1","LANDSAT_ETM_C1","LANDSAT_8_C1" )
+
+# And, specifically, the "Surface Reflectance" product and Geotiff format:
+myproducts="sr"
+myformat="gtiff"
+
+# Lake Tahoe Basin bounding box:
+mylowerLeft = list(latitude=38.625,longitude=-120.25)
+myupperRight = list(latitude=39.375,longitude=-119.86)
+
+# We'll search from 2015 to present:
+mystartDate="2015-01-01"
+myendDate=as.character(Sys.Date()) # Today's date!  Needs to be in character format...
+
+# And only July:
+mymonths=c(7) 
+
+# Let's just make sure this works before we order:
+
+search_results <- earthexplorer_search(
+		usgs_eros_username="myusername",usgs_eros_password="mypassword",
+		datasetName=mydatasetName,
+		lowerLeft=mylowerLeft,upperRight=myupperRight,
+		startDate=mystartDate,endDate=myendDate,months=mymonths,
+		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
+		additionalCriteria="",
+		sp=NULL,
+		place_order=F,
+		products=myproducts,
+		format=myformat,
+		verbose=F)
+
+# Let's see how many results we get:
+length(search_results$LANDSAT_8_C1$data$results)
+length(search_results$LANDSAT_ETM_C1$data$results) 
+length(search_results$LANDSAT_TM_C1$data$results) # Landsat 5 TM stopped in November 2011
+
+# The Lake Tahoe Basin falls in a few Landsat "path/rows":
+plot(search_to_spatialPolygons(search_results$LANDSAT_8_C1))
+
+# Ok, let's only do Landsat 8, and put in an order!
+mydatasetName="LANDSAT_8_C1" 
+
+search_results <- earthexplorer_search(
+		usgs_eros_username="jgrn307",usgs_eros_password="password307",
+		datasetName=mydatasetName,
+		lowerLeft=mylowerLeft,upperRight=myupperRight,
+		startDate=mystartDate,endDate=myendDate,months=mymonths,
+		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
+		additionalCriteria="",
+		sp=NULL,
+		place_order=T, # Change this to "T"
+		products=myproducts,
+		format=myformat,
+		verbose=T)
+
+# We can check the order at this website:
+# https://espa.cr.usgs.gov -> login, then "Show Orders" (it may take a few minutes to show up)
 

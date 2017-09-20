@@ -147,6 +147,10 @@ earthexplorer_search <- function(
 	names(initial_search) <- datasetName
 	# TODO: DEAL WITH TIMEOUTS
 	
+	# Remove datasets with no results:
+	# search_with_results_index <- sapply(initial_search,function(x) {!is.null(x$data)} )
+	
+	
 #	browser()
 	
 	# Check for intersection with poly if need be and remove searches outside of it.
@@ -193,9 +197,15 @@ earthexplorer_search <- function(
 			entities <- foreach(i=seq(length(initial_search))) %do%
 					{
 						current_search <- initial_search[[i]]
-						if(current_search$data$numberReturned > 0)
+						if(length(current_search$data$results) > 0)
 						{
-							return(sapply(current_search$data$results,function(x) return(x$entityId)))
+							if(names(initial_search)[i] %in% c("LANDSAT_TM_C1","LANDSAT_ETM_C1","LANDSAT_8_C1" ))
+							{
+								return(sapply(current_search$data$results,function(x) return(x$displayId)))						
+							} else
+							{
+								return(sapply(current_search$data$results,function(x) return(x$entityId)))
+							}
 						} else
 						{
 							return(NULL)
