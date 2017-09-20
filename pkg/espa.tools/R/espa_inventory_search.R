@@ -86,6 +86,9 @@ espa_inventory_search <- function(datasetName,
 		startDate="1920-01-07",endDate=Sys.Date(),
 		verbose=F)
 {
+#	browser()
+	
+	
 	# Updated for 1.4.0.
 	if(spatialFilter=="" && (lowerLeft != "" && upperRight != ""))
 	{
@@ -96,7 +99,6 @@ espa_inventory_search <- function(datasetName,
 	{
 		temporalFilter <- espa_inventory_temporalFilter(startDate=startDate,endDate=endDate,dateField="search_date")
 	}
-	
 	
 	
 	search_parameters <- list(datasetName=datasetName,spatialFilter=spatialFilter,

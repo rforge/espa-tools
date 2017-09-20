@@ -6,10 +6,10 @@
 \usage{
 earthexplorer_search(usgs_eros_username, usgs_eros_password, datasetName,
   lowerLeft = NULL, upperRight = NULL, startDate = "1920-01-07",
-  endDate = Sys.Date(), months = "", includeUnknownCloudCover = T,
-  minCloudCover = 0, maxCloudCover = 100, additionalCriteria = "",
-  sp = NULL, place_order = F, products = "sr", format = "gtiff",
-  verbose = F)
+  endDate = as.character(Sys.Date()), months = "",
+  includeUnknownCloudCover = T, minCloudCover = 0, maxCloudCover = 100,
+  additionalCriteria = "", sp = NULL, place_order = F, products = "sr",
+  format = "gtiff", verbose = F)
 }
 \arguments{
 \item{usgs_eros_username}{Character. Your USGS registration username. You can register for an account at https://espa.cr.usgs.gov}

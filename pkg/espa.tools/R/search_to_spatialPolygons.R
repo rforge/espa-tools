@@ -33,7 +33,7 @@ search_to_spatialPolygons <- function(espa_inventory_search_results)
 	if(espa_inventory_search_results$data$numberReturned > 0)
 	{
 		
-		search_to_spatialPolygons_list <- foreach(i=seq(espa_inventory_search_results$data$numberReturned)) %do%
+		search_to_spatialPolygons_list <- foreach(i=seq(length(espa_inventory_search_results$data$results))) %do%
 				{
 					# Updated for 1.4.0
 					sceneBounds <- as.numeric(unlist(strsplit(espa_inventory_search_results$data$results[[i]]$sceneBounds,split=",")))
@@ -49,7 +49,7 @@ search_to_spatialPolygons <- function(espa_inventory_search_results)
 					Ps1 <- Polygons(list(P1),ID=i) 
 					return(Ps1)
 				}
-		search_to_spatialPolygons_entities <- as.data.frame(foreach(i=seq(espa_inventory_search_results$data$numberReturned),.combine=rbind) %do%
+		search_to_spatialPolygons_entities <- as.data.frame(foreach(i=seq(length(espa_inventory_search_results$data$results)),.combine=rbind) %do%
 						{
 							# http://gis.stackexchange.com/questions/206929/r-create-a-boundingbox-convert-to-polygon-class-and-plot
 							return(espa_inventory_search_results$data$results[[i]]$entityId)

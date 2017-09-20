@@ -62,7 +62,7 @@ earthexplorer_search <- function(
 		usgs_eros_username,usgs_eros_password,
 		datasetName,
 		lowerLeft=NULL,upperRight=NULL,
-		startDate="1920-01-07",endDate=Sys.Date(),months="",
+		startDate="1920-01-07",endDate=as.character(Sys.Date()),months="",
 		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
 		additionalCriteria="",
 		sp=NULL,
@@ -78,8 +78,8 @@ earthexplorer_search <- function(
 #	)
 	
 	special_datasetName=list(
-			LANDSAT_4578=c("LANDSAT_TM_C1","LANDSAT_ETM_C1","LANDSAT_8_C1" )#,
-	#	LANDSAT_4578_SR=c("LSR_LANDSAT_TM","LSR_LANDSAT_ETM_COMBINED","LSR_LANDSAT_8")
+			LANDSAT_4578=c("LANDSAT_TM_C1","LANDSAT_ETM_C1","LANDSAT_8_C1" ),
+			LANDSAT_4578_SR=c("LSR_LANDSAT_TM_C1","LSR_LANDSAT_ETM_C1","LSR_LANDSAT_8_C1")
 	)
 	
 	# First, get API key:
@@ -93,20 +93,26 @@ earthexplorer_search <- function(
 			#		startDate=startDate,endDate=endDate,
 			apiKey=apiKey,verbose=verbose)
 	
+#	browser()
+	
+	available_datasetNames <- sapply(available_datasets$data,function(x) return(x$datasetName))
+	
+#	browser()
+	
 	if(any(names(special_datasetName) %in% datasetName))
 	{
 		# index of special datasetNames:
 		special_datasetName_index <- names(special_datasetName) %in% datasetName
 		additional_datasets <- unlist(special_datasetName[special_datasetName_index])
+		datasetName <- c(unlist(special_datasetName[special_datasetName_index]),datasetName[!(datasetName %in% names(special_datasetName))])
+		
 	} else
 	{
 		additional_datasets=NULL
 	}
 	
 	if(verbose) message("Checking for valid datasetNames...")
-	available_datasetNames <- sapply(available_datasets$data,function(x) return(x$datasetName))
 	
-	datasetName <- c(unlist(special_datasetName[special_datasetName_index]),datasetName[!(datasetName %in% names(special_datasetName))])
 	
 	# browser()
 	# Make sure they are ok:
@@ -131,7 +137,7 @@ earthexplorer_search <- function(
 	initial_search <- foreach(i=datasetName) %do%
 			{
 				espa_inventory_search(datasetName=i,lowerLeft=lowerLeft,upperRight=upperRight,
-						startDate=startDate,endDate=endDate,months=months,
+						startDate=startDate,endDate=endDate,months="",
 						includeUnknownCloudCover=includeUnknownCloudCover,minCloudCover=minCloudCover,maxCloudCover=maxCloudCover,
 						additionalCriteria=additionalCriteria,
 						maxResults=50000,startingNumber=1,sortOrder="ASC",
@@ -140,6 +146,8 @@ earthexplorer_search <- function(
 	
 	names(initial_search) <- datasetName
 	# TODO: DEAL WITH TIMEOUTS
+	
+#	browser()
 	
 	# Check for intersection with poly if need be and remove searches outside of it.
 	if(!is.null(sp))
@@ -150,6 +158,24 @@ earthexplorer_search <- function(
 					intersection_ids <- gIntersects(search_to_spatialPolygons_datasets[[i]],sp_ll,byid=T)
 					return(initial_search[[i]]$data$results[intersection_ids])
 				}
+		# refined_search <- initial_search
+		for(i in seq(length(initial_search)))
+		{
+			initial_search[[i]]$data$results <- refined_search_results[[i]]
+		}
+	}
+	
+	# TODO: IMPLEMENT MULTIPLE MONTHS
+	
+	if(!is.null(months))
+	{
+		search_to_Dates_datasets <- lapply(initial_search,search_to_Dates)
+		refined_search_results <- foreach(i=seq(length(initial_search))) %do%
+				{
+					intersection_ids <- search_to_Dates_datasets[[i]]$acquisitionMonth %in% months					
+					return(initial_search[[i]]$data$results[intersection_ids])
+				}
+		
 		# refined_search <- initial_search
 		for(i in seq(length(initial_search)))
 		{
