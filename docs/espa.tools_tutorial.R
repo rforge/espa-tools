@@ -153,7 +153,7 @@ plot(search_to_spatialPolygons(search_results$LANDSAT_8_C1))
 mydatasetName="LANDSAT_8_C1" 
 
 search_results <- earthexplorer_search(
-		usgs_eros_username="jgrn307",usgs_eros_password="password307",
+		usgs_eros_username="myusername",usgs_eros_password="mypassword",
 		datasetName=mydatasetName,
 		lowerLeft=mylowerLeft,upperRight=myupperRight,
 		startDate=mystartDate,endDate=myendDate,months=mymonths,
@@ -168,3 +168,30 @@ search_results <- earthexplorer_search(
 # We can check the order at this website:
 # https://espa.cr.usgs.gov -> login, then "Show Orders" (it may take a few minutes to show up)
 
+### STEP 6: DOWNLOAD THE DATA.
+library("espa.tools")
+library("foreach")
+library("jsonlite")
+library("xml2")
+
+# It can take hours to weeks to prepare the Landsat order.  You will get an email, but can also check online for the status:
+# https://espa.cr.usgs.gov -> login, then "Show Orders" (it may take a few minutes to show up)
+# Let's get a list of the orders we put in:
+
+my_orders <- espa_ordering_listorders(usgs_eros_username="myusername",usgs_eros_password="mypassword",ordernums_only=T)
+# On the website, you can see the order number as well.  Trick: the orders are sorted most recent to last, so we can choose:
+my_latest_order <- my_orders[1]
+
+# We'll use a slightly older one:
+my_latest_order <- my_orders[2] 
+
+
+# Let's setup an output folder to save to:
+# Note with Windows, use double backslashes everywhere.
+output_folder = "R:\\SCRATCH\\jgreenberg\\landsat_tahoe"
+
+earthexplorer_download(usgs_eros_username="myusername",usgs_eros_password="mypassword",
+ 	output_folder=output_folder,
+ 	ordernum=my_latest_order)
+
+# Once it says "NULL" that means it is done downloading everything!  Check your output folder!
