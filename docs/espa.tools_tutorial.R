@@ -14,3 +14,13 @@ install.packages("sp")
 install.packages("xml2")
 
 # Install espa-tools from R-forge:
+# Try this first:
+install.packages("espa.tools", repos="http://R-Forge.R-project.org")
+
+# If that doesn't work:
+install.packages("devtools")
+library("devtools")
+# Install Tortoise SVN if on Windows:
+# https://tortoisesvn.net/downloads.html
+# Then:
+install_svn("svn://r-forge.r-project.org/svnroot/espa-tools/pkg/espa.tools")
