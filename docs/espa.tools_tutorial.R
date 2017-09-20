@@ -1,6 +1,8 @@
-
-
 ##### ESPA Tools for R Tutorial #####
+# Jonathan Greenberg
+# jgreenberg@unr.edu
+# Last updated 20 September 2017
+
 
 ### STEP 1: INSTALL ESPA TOOLS:
 # Install dependencies:
