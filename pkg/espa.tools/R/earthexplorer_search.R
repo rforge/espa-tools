@@ -171,6 +171,8 @@ earthexplorer_search <- function(
 	
 	# TODO: IMPLEMENT MULTIPLE MONTHS
 	
+#	browser()
+
 	if(!is.null(months))
 	{
 		search_to_Dates_datasets <- lapply(initial_search,search_to_Dates)

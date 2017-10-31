@@ -35,14 +35,19 @@ search_to_Dates <- function(espa_inventory_search_results)
 		
 		search_to_Dates_data.frame <- as.data.frame(foreach(i=seq(length(espa_inventory_search_results$data$results)),.combine=rbind) %do%
 						{
+							# print(i)
 							entityId=espa_inventory_search_results$data$results[[i]]$entityId
 							acquisitionDate=espa_inventory_search_results$data$results[[i]]$acquisitionDate
+							if(!is.null(acquisitionDate))
+							{
 							month=as.numeric(format(as.Date(acquisitionDate),"%m"))
 							return(c(entityId,acquisitionDate,month))
+							} else
+								return(NULL)
 						#	return(c(espa_inventory_search_results$data$results[[i]]$entityId,espa_inventory_search_results$data$results[[i]]$acquisitionDate))
 						})
 		names(search_to_Dates_data.frame) <- c("entityId","acquisitionDate","acquisitionMonth")
-		
+#		browser()
 		return(search_to_Dates_data.frame)
 		
 	}

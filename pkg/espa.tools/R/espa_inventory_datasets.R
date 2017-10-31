@@ -29,8 +29,7 @@
 #' espa_inventory_datasets(datasetName="LANDSAT_8",lowerLeft=list(latitude=44.60847,"longitude"=-99.69639),
 #'    upperRight=list(latitude=44.60847,"longitude"=-99.69639),
 #'    startDate="2014-10-01",endDate="2014-10-01",
-#'    apiKey=apiKey,
-#'    node="EE") 
+#'    apiKey=apiKey)
 #' }
 #' @export 
 

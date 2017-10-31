@@ -9,7 +9,6 @@
 install.packages("foreach")
 install.packages("httr")
 install.packages("jsonlite")
-install.packages("parallel")
 install.packages("rgdal")
 install.packages("rgeos")
 install.packages("sp")
@@ -34,10 +33,10 @@ install_svn("svn://r-forge.r-project.org/svnroot/espa-tools/pkg/espa.tools")
 
 ### STEP 3: CHECK OUT WHAT DATASETS YOU CAN ORDER:
 library("espa.tools")
-apiKey=espa_inventory_login(usgs_eros_username="myusername",usgs_eros_password="mypassword")
+apiKey=espa_inventory_login(usgs_eros_username="jgrn307",usgs_eros_password="password307")
 available_datasets <- espa_inventory_datasets(apiKey=apiKey)
 available_datasetNames <- sapply(available_datasets$data,function(x) return(x$datasetName))
-available_datasetNames
+sort(available_datasetNames)
 
 ### STEP 4: DO AN INITIAL SEARCH BUT DON'T ORDER YET.
 library("espa.tools")
@@ -59,7 +58,7 @@ mylowerLeft = list(latitude=35.0023,longitude=-120.0058)
 myupperRight = list(latitude=42.0018,longitude=-114.0394)
 
 # We'll search from 1990 to present:
-mystartDate="1990-01-01"
+mystartDate="2010-01-01"
 myendDate=as.character(Sys.Date()) # Today's date!  Needs to be in character format...
 
 # And only July and August:
@@ -69,7 +68,7 @@ mymonths=c(7,8)
 # This will take a bit if the search returns a lot...
 
 search_results <- earthexplorer_search(
-		usgs_eros_username="myusername",usgs_eros_password="mypassword",
+		usgs_eros_username="jgrn307",usgs_eros_password="password307",
 		datasetName=mydatasetName,
 		lowerLeft=mylowerLeft,upperRight=myupperRight,
 		startDate=mystartDate,endDate=myendDate,months=mymonths,
@@ -122,7 +121,7 @@ mylowerLeft = list(latitude=38.625,longitude=-120.25)
 myupperRight = list(latitude=39.375,longitude=-119.86)
 
 # We'll search from 2015 to present:
-mystartDate="2015-01-01"
+mystartDate="1990-01-01"
 myendDate=as.character(Sys.Date()) # Today's date!  Needs to be in character format...
 
 # And only July:
