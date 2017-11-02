@@ -19,7 +19,8 @@
 #' espa_ordering_listorders(usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' 
 #' # Get status for a different user based on their email:
-#' espa_ordering_listorders(email="my@@email.com",usgs_eros_username="myusername",usgs_eros_password="mypassword")
+#' espa_ordering_listorders(email="my@@email.com",usgs_eros_username="myusername",
+#' 		usgs_eros_password="mypassword")
 #' }
 #' @export
 

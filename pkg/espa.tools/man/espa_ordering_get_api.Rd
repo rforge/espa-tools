@@ -31,7 +31,8 @@ In general, you shouldn't need to call this directly unless you want finer comma
 \examples{
 \dontrun{ 
 # Run the API version command:
-espa_ordering_get_api(request_code="api",json_request_content=NULL,usgs_eros_username="myusername",usgs_eros_password="mypassword")
+espa_ordering_get_api(request_code="api",json_request_content=NULL,
+		usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
 \seealso{

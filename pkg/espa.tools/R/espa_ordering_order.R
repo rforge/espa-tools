@@ -20,7 +20,8 @@
 #'		olitirs8=list(
 #'				inputs="LC80270292015233LGN00",products="sr"),
 #'		format=unbox("gtiff")) 
-#' myorder <- espa_ordering_order(orderrequest=orderrequest,usgs_eros_username="myusername",usgs_eros_password="mypassword")
+#' myorder <- espa_ordering_order(orderrequest=orderrequest,
+#' 		usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
 #' @export
 #' @import httr jsonlite

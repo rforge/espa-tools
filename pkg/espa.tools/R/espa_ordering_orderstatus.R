@@ -14,7 +14,8 @@
 #' @references \url{https://github.com/USGS-EROS/espa-api#apiStatus}
 #' @examples
 #' \dontrun{ 
-#' espa_ordering_orderstatus(ordernum="my@@email.com-01122017-154454-218",usgs_eros_username="myusername",usgs_eros_password="mypassword")
+#' espa_ordering_orderstatus(ordernum="my@@email.com-01122017-154454-218",
+#' 		usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
 #' @export
 espa_ordering_orderstatus <- function(ordernum=NULL,usgs_eros_username,usgs_eros_password,verbose=F)

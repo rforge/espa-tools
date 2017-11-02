@@ -40,7 +40,8 @@ submit the ordernum to this function for batch downloading.
 \examples{
 \dontrun{ 
 # Get a list of your orders, and choose the first order result:
-my_orders <- espa_ordering_listorders(usgs_eros_username="myusername",usgs_eros_password="mypassword",ordernums_only=T)
+my_orders <- espa_ordering_listorders(usgs_eros_username="myusername",
+	usgs_eros_password="mypassword",ordernums_only=T)
 my_latest_order <- my_orders[1]
 earthexplorer_download(usgs_eros_username="myusername",usgs_eros_password="mypassword",
 	output_folder=getwd()

@@ -27,7 +27,8 @@ Retrieves a submitted orders status
 }
 \examples{
 \dontrun{ 
-espa_ordering_orderstatus(ordernum="my@email.com-01122017-154454-218",usgs_eros_username="myusername",usgs_eros_password="mypassword")
+espa_ordering_orderstatus(ordernum="my@email.com-01122017-154454-218",
+		usgs_eros_username="myusername",usgs_eros_password="mypassword")
 }
 }
 \references{

@@ -17,7 +17,8 @@
 #' \dontrun{ 
 #' # Run the API retrieval command:
 #' 	login_parameters <- list(username="myusername",password="mypassword")
-#' 	espa_inventory_post_api(request_code="login",json_request_content=login_parameters,verbose=verbose)
+#' 	espa_inventory_post_api(request_code="login",
+#'     json_request_content=login_parameters,verbose=verbose)
 #' }
 #' @import httr jsonlite
 #' @export 

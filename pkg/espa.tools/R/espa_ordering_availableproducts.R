@@ -17,7 +17,8 @@
 #' @examples
 #' \dontrun{ 
 #' inputs <- "LC08_L1TP_029030_20161008_20170220_01_T1"
-#' espa_ordering_availableproducts(inputs=inputs,usgs_eros_username="myusername",usgs_eros_password="mypassword")
+#' espa_ordering_availableproducts(inputs=inputs,
+#' 		usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
 #' @export
 

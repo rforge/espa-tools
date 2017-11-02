@@ -65,8 +65,10 @@
 #' 		additionalCriteria=list(
 #' 				filterType="and",
 #' 				childFilters=c(
-#' 						list(filterType="between",fieldId=10036,firstValue="22",secondValue="24"),
-#' 						list(filterType="between",fieldId=10038,firstValue="38",secondValue="40")
+#' 						list(filterType="between",fieldId=10036,
+#' 							firstValue="22",secondValue="24"),
+#' 						list(filterType="between",fieldId=10038,
+#' 							firstValue="38",secondValue="40")
 #' 						)),
 #' 						node="EE",
 #' 						maxResults=3,startingNumber=1,sortOrder="ASC",

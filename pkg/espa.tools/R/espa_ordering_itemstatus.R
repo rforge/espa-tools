@@ -16,10 +16,13 @@
 #' @examples
 #' \dontrun{ 
 #' # Get status for all items in a given order:
-#' espa_ordering_itemstatus(ordernum="my@@email.com-01122017-154454-218",usgs_eros_username="myusername",usgs_eros_password="mypassword")
+#' espa_ordering_itemstatus(ordernum="my@@email.com-01122017-154454-218",
+#' 		usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' 
 #' # Get status for a single item in a given order:
-#' espa_ordering_itemstatus(ordernum="my@@email.com-01122017-154454-218",itemnum="LC80410312015219LGN00",usgs_eros_username="myusername",usgs_eros_password="mypassword")
+#' espa_ordering_itemstatus(ordernum="my@@email.com-01122017-154454-218",
+#' 		itemnum="LC80410312015219LGN00",usgs_eros_username="myusername",
+#' 		usgs_eros_password="mypassword")
 #' }
 #' @export
 
