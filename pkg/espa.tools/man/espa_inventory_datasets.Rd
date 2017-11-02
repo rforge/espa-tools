@@ -11,6 +11,10 @@ espa_inventory_datasets(datasetName = NULL, spatialFilter = NULL,
 \arguments{
 \item{datasetName}{Character. Used as a filter with wildcards inserted at the beginning and the end of the supplied value.  See https://mapbox.github.io/usgs/reference/catalog/hdds.html for a list of valid datasetNames.}
 
+\item{spatialFilter}{TBD}
+
+\item{temporalFilter}{TBD}
+
 \item{lowerLeft}{List. When used in conjunction with upperRight, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)}
 
 \item{upperRight}{List. When used in conjunction with lowerLeft, creates a bounding box to search spatially. Should be a list of form list(latitude=XX,longitude=XX)}
@@ -45,8 +49,7 @@ apiKey=espa_inventory_login("myusername","mypassword")
 espa_inventory_datasets(datasetName="LANDSAT_8",lowerLeft=list(latitude=44.60847,"longitude"=-99.69639),
    upperRight=list(latitude=44.60847,"longitude"=-99.69639),
    startDate="2014-10-01",endDate="2014-10-01",
-   apiKey=apiKey,
-   node="EE") 
+   apiKey=apiKey)
 }
 }
 \references{

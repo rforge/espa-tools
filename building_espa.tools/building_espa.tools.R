@@ -1,5 +1,5 @@
 # For jgrn/krypton:
-pathtopackage <- "/Users/jgrn307/Documents/workspace/gdalutils/pkg/gdalUtils"
+pathtopackage <- "/Users/jgrn307/Documents/workspace/espa-tools/pkg/espa.tools"
 
 # kandor:
 pathtopackage <- "C:\\Users\\jgreenberg\\workspace\\espa-tools\\pkg\\espa.tools"

@@ -15,6 +15,7 @@
 #' \dontrun{ 
 #' espa_ordering_apioperations(usgs_eros_username="myusername",usgs_eros_password="mypassword")
 #' }
+#' @import utils
 #' @export 
 
 espa_ordering_apioperations <- function(usgs_eros_username,usgs_eros_password,verbose=F)

@@ -28,7 +28,7 @@
 #' 	output_folder=getwd()
 #' 	ordernum=my_latest_order)
 #' }
-#' @import httr foreach parallel
+#' @import httr foreach parallel doParallel
 #' @export 
 
 earthexplorer_download <- function(

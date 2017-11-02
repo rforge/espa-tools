@@ -46,7 +46,7 @@ espa_ordering_listorders <- function(email=NULL,usgs_eros_username,usgs_eros_pas
 	if(ordernums_only) 
 	{
 		# v1 -- very messy cleaning:
-		results <- strsplit(gsub(" ","",gsub("\"","",gsub("\\]","",gsub("\\[","",(as_list(espa_ordering_listorders_results)$body$p[[1]]))))),",")[[1]]
+		results <- strsplit(gsub(" ","",gsub("\"","",gsub("\\]","",gsub("\\[","",(as.list(espa_ordering_listorders_results)$body$p[[1]]))))),",")[[1]]
 		espa_ordering_listorders_results <- results
 	}
 		

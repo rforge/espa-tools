@@ -6,9 +6,9 @@ Type: Package
 LazyLoad: yes
 Author: Jonathan Asher Greenberg and USGS ESPA Developers
 Description: Wrappers for the USGS ESPA APIs and Earth Explorer.
-Version: 0.5
-Date: 2017-10-31
+Version: 0.6
+Date: 2017-11-1
 Depends:
     R (>= 2.14.0)
-Imports: foreach,httr,jsonlite,rgdal,rgeos,sp
+Imports: foreach,httr,jsonlite,rgdal,rgeos,sp,doParallel
 RoxygenNote: 6.0.1
