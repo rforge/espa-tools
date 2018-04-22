@@ -11,4 +11,4 @@ Date: 2018-04-22
 Depends:
     R (>= 2.14.0)
 Imports: foreach,httr,jsonlite,rgdal,rgeos,sp,doParallel
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
