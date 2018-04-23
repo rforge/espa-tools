@@ -1,7 +1,7 @@
 Package: espa.tools
 Maintainer: Jonathan Asher Greenberg <jgrn307@gmail.com>
 License: GPL (>= 2)
-Title: Wrappers for Earth Explorer and the ESPA Ordering System
+Title: Wrappers for the USGS ESPA APIs and Earth Explorer
 Type: Package
 LazyLoad: yes
 Author: Jonathan Asher Greenberg and USGS ESPA Developers
