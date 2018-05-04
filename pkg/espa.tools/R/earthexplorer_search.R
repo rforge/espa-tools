@@ -38,9 +38,9 @@
 #' 		"lowerLeft"=list(latitude=75,longitude=-135),
 #' 		"upperRight"=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
-#'		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
+#'		includeUnknownCloudCover=TRUE,minCloudCover=0,maxCloudCover=100,
 #'		place_order = F,
-#'		verbose=T)
+#'		verbose=TRUE)
 #' 
 #' # Search and order:
 #' earthexplorer_search(
@@ -49,11 +49,11 @@
 #' 		"lowerLeft"=list(latitude=75,longitude=-135),
 #' 		"upperRight"=list(latitude=90,longitude=-120),
 #' 		startDate="2006-01-01",endDate="2007-12-01",
-#'		includeUnknownCloudCover=T,minCloudCover=0,maxCloudCover=100,
+#'		includeUnknownCloudCover=TRUE,minCloudCover=0,maxCloudCover=100,
 #'		place_order = T,
 #' 		products="sr",
 #' 		format="gtiff",
-#'		verbose=T)
+#'		verbose=TRUE)
 #' }
 #' @import rgdal foreach rgeos
 #' @export 

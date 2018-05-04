@@ -5,10 +5,15 @@ Title: Wrappers for the USGS ESPA APIs and Earth Explorer
 Type: Package
 LazyLoad: yes
 Author: Jonathan Asher Greenberg and USGS ESPA Developers
-Description: Wrappers for the USGS ESPA APIs and Earth Explorer.
-Version: 0.64
-Date: 2018-04-22
+Description: Wrappers for the United States Geological Survey (USGS)
+	 'Earth Resources Observation and Science Center Science Processing
+	 Architecture' (ESPA) <https://espa.cr.usgs.gov/> and 'Earth Explorer'
+	 <https://earthexplorer.usgs.gov/> APIs.  This will allow you to 
+	 search, order, and download USGS geospatial products.
+Version: 0.65
+Date: 2018-05-04
 Depends:
     R (>= 2.14.0)
 Imports: foreach,httr,jsonlite,rgdal,rgeos,sp,doParallel
+SystemRequirements: ESPA and/or Earth Explorer account.
 RoxygenNote: 6.0.1.9000
